@@ -1,0 +1,16 @@
+<app-navigation-header></app-navigation-header>
+
+<div>
+  <label for="personName">Full Name</label>
+  <input id="personName" type="text" [(ngModel)]="personName" placeholder="Enter user name">
+  <button (click)="incrementCounter()" [disabled]="isDisabled">Add</button>
+  <br>
+  <p>Entered Person :  {{personName}}</p>
+  <label for="showCount">{{personName}} added at index {{count}}</label>
+    <ul>
+      <li *ngFor="let item of personList">{{item}}</li>
+    </ul>
+</div>
+
+<app-footer></app-footer>
+<router-outlet />
