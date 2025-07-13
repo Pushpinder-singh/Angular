@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { NavigationHeader } from './navigation-header/navigation-header';
 import { Footer } from './footer/footer';
 import { CommonModule } from '@angular/common';
+import { PostService } from './services/post-service';
+import { error } from 'console';
+import { response } from 'express';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +19,14 @@ import { CommonModule } from '@angular/common';
     NavigationHeader,
     Footer
   ],
+  providers: [PostService,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
   protected readonly title = signal('my-app');
+  posts : any[] = [];
 
   isDisabled: boolean = false;
   count = 0;
@@ -37,5 +43,22 @@ export class App {
 
   // console.log(personList);
 
+constructor(private postService: PostService){
+}
+
+ngOnInit(){
+  // alert('ngOnInit() is called.')
+  this.postService.getPosts().subscribe({
+    next: (response) => {
+  this.posts = response;
+  },
+    error: (error) => {
+      console.error(error);
+    }
+  });
+  
+
+
+}
 
 }
