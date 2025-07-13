@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { PostService } from './services/post-service';
 import { error } from 'console';
 import { response } from 'express';
+import { UserModule } from './user/user-module';
+import { User } from './user/user';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,8 @@ import { response } from 'express';
     RouterOutlet,
     NavigationHeaderModule,
     NavigationHeader,
+    UserModule,
+    User,
     Footer
   ],
   providers: [PostService,
@@ -50,6 +54,7 @@ ngOnInit(){
   // alert('ngOnInit() is called.')
   this.postService.getPosts().subscribe({
     next: (response) => {
+      console.log('Posts Response: ',response);
   this.posts = response;
   },
     error: (error) => {

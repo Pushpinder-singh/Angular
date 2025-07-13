@@ -1,0 +1,16 @@
+<div class="form-container">
+    <h2>User Login</h2>
+        <form action="" #userForm="ngForm" (ngSubmit)="submtiForm(userForm)">
+<div>
+    <label for="Username">Name  :</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+</div>
+<div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+</div>
+<div class="login-btn">
+    <button type="submit" [disabled]="userForm.invalid || !validateEmail()">Submit</button>
+</div>
+</form>
+</div>
